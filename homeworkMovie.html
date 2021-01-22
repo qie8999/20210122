@@ -1,0 +1,211 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자바스크립트 - 먹방 모음</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 오버레이 실행시 뒷 배경 스크롤 방지 */
+        .stop-scrolling {
+            /* height: 100%; */
+            overflow: hidden;
+        }
+
+        h1 {
+            width: 450px;
+            margin: 0 auto;
+            text-align: center;
+            color: rgb(42, 95, 240);
+            padding-top: 20px;
+        }
+
+        .subsubject {
+            text-align: center;
+        }
+
+        p {
+            padding: 8px 0px;
+        }
+
+        .container {
+            display: flex;
+            flex-flow: row wrap;
+            justify-items: center;
+            justify-content: center;
+        }
+
+        .container>div {
+            flex-basis: 25%;
+            flex: 0;
+            margin: 8px;
+            border: 1px solid rgb(252, 252, 252);
+            padding: 8px;
+            cursor: pointer;
+            box-sizing: border-box;
+
+        }
+
+        .container>div:hover {
+            border: 1px solid rebeccapurple;
+        }
+
+        .buttonWrapper {
+            width: 100vs;
+            text-align: center;
+        }
+
+        .more {
+            width: 120px;
+            padding: 8px 15px;
+            margin: 10px auto;
+        }
+
+        /* 오버레이 설정 */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            /* 시작시 보이지 않게 처리 */
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.5s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 오버레이를 보여 줄때 사용 */
+        #overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            margin: 8px auto;
+        }
+
+        /* 이건 테스크탑 기준 - 모바일은 따로 설정할 필요가 있다. */
+        .youtube {
+            width: 60%;
+            height: 60%;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+        }
+
+        .noVideo {
+            color: white;
+        }
+
+        /* 모바일 전용 */
+        @media (max-width: 768px) {
+            .youtube {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="">
+    <h1>Mukbang</h1>
+    <p class="subsubject">먹을때가 제일 행복하다</p>
+
+    <div class="container">
+
+        <div data-id="464052" onclick="openView(this)">            
+            <a href="https://youtu.be/E6GQHKf6h4A">
+                <img src="homework_img/num1.png" width="500px"></a>
+            <h2>패티가 4장, 혈관파괴 버거킹 스태커4 먹방</h2>
+            <p class="overview">▶침착맨의 【식욕저하 다이어트 먹방】 <br>
+                영상 모음: https://goo.gl/eUvjNe <br>
+                <br>
+                ▶침투부 인기동영상: http://goo.gl/i7Uqj1<br>
+                ▶침착맨 트위치 실시간방송: http://www.twitchtv/zilioner<br>
+                <br>
+                ▶편집자: 전수만 (4호 침투부수호자)<br>
+                ▶2021년 1월 19일 방송분<br>
+
+                #침착맨 #버거킹 #스태커4<br></p>
+            <p class="release_date">업로드: 2021-01-21</p>
+        </div>
+        <div data-id="508442" onclick="openView(this)">
+            <a href="https://youtu.be/B3PH-TLulNk"><img src="homework_img/num2.png" width="500px"></a>
+            <h2>소고기 5가지 부위 3kg 먹방</h2>
+            <p class="overview"></p>
+            <p class="release_date">업로드: 2020-12-25</p>
+        </div>
+        <div data-id="651571" onclick="openView(this)">
+            <a href="https://youtu.be/S-EuOO1ThLc">
+            <img src="homework_img/num3.png" width="500px"></a>
+            <h2>고기를 왕창 때려넣은 돼지국밥 먹방!"김치는 한국의 전통 음식입니다"</h2>
+            <p class="overview">
+                김치는 한국의 전통 음식입니다.<br>
+                Kimchi is Korean traditional food.</p>
+            <p class="release_date">업로드: 2021-01-20</p>
+        </div>
+        <div data-id="675327" onclick="openView(this)">
+            <a href="https://youtu.be/ZrYzv82tJNY">
+            <img src="homework_img/num4.png" width="500px"></a>
+            <h2>쯔앙, 다이어터 비 옆에서 마트 통째로 먹어버리는 먹방 (feat.은퇴 이유 취중 진담)|시즌비시즌 EP.20</h2>
+            <p class="overview">#비 #쯔양 #먹방
+                비 최애 유튜버 쯔양 먹방 직관♥ + 진짜 솔직히 밝히는 쯔양 은퇴(했던) 이유<br>
+                '나로 바꾸자' 컴백 때문에 1일 1식 중인 다이어터 비, 제대로 고문하는 대리 먹방</p>
+            <p class="release_date">업로드: 2021-01-07</p>
+        </div>
+        <div data-id="529203" onclick="openView(this)">
+            <a href="https://youtu.be/xqVJ3xx_XHI">
+            <img src="homework_img/num5.png" width="500px"></a>
+            <h2>겉바속촉 오븐통삼겹과 진짜장 먹방~!! 리얼사운드 social eating Mukbang(Eating Show)</h2>
+            <p class="overview">
+                문의메일 <br>
+                ddeonggae@sandboxnetwork.net</p>
+            <p class="release_date">업로드: 2021-01-15</p>
+        </div>
+        <div data-id="553604" onclick="openView(this)">
+            <a href="https://youtu.be/nWgQjzZxpp0">
+            <img src="homework_img/num6.png" width="500px"></a>
+            <h2>꼬들꼬들한 열라면 먹방 (ft. 김장김치, 초밥) Spicy Ramyeon Instant Noodles Mukbang</h2>
+            <p class="overview">
+                🎈INSTAGRAM :https://www.instagram.com/SANGYOONCE <br>
+                📩sangyoonce@gmail.com (비즈니스 메일함)
+            </p>
+            <p class="release_date">업로드: 2020-12-22</p>
+
+
+            <div id="overlay" class=""
+                style="background-image: url(https://image.tmdb.org/t/p/w300//qJiaB4RJMM5Oh6A4rqrEOHQUJbu.jpg); background-size: auto; background-repeat: no-repeat;">
+                <div class="youtube"></div>
+                <img class="close" src="img/close_white.png">
+            </div>
+        </div>
+</div>
+            <script>
+          
+
+         
+            </script>
+
+
+
+</body>
